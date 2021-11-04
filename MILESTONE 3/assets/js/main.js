@@ -111,7 +111,7 @@ const app = new Vue ({
 
         add () {
             console.log('aggiungi');
-            if(this.newTask != ''){
+            if(this.newMex != ''){
                 this.contacts[this.numberContact].messages.push({
                     text: this.newMex,
                     status: 'sent'
