@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOLZAPP</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div id="app">
+         <div class="sfondo">
+            <div class="header"></div>
+            <div class="main"></div>
+            <div class="page">
+                <div class="left">
+                    <div class="header-left">
+                        <div class="user-io">
+                            <img height="70" width="70" src="./img/avatar_io.jpg" alt="">
+                            <h2>Nome utente</h2>
+                        </div>
+                        <div class="emo-io">
+                            <i class="fas fa-circle-notch fa-2x"></i>
+                            <i class="fas fa-comment-alt fa-2x"></i>
+                            <i class="fas fa-ellipsis-v fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="main-left">
+                        <div class="notifiche">
+                            <div class="not-emo">
+                                <i class="fas fa-bell-slash fa-2x"></i>
+                            </div>
+                            <div class="not-text">
+                                <h2>Ricevi notifiche di nuovi messaggi</h2>
+                                <p>Attiva notifiche desktop</p>
+                            </div>
+                        </div>
+                        <div class="search">
+                            <i class="fas fa-search"></i>
+                            <input 
+                                type="text" 
+                                placeholder="Cerca o inizia una nuova chat" 
+                                v-model="newChat" 
+                                
+                            >
+                        </div>
+                        <div class="contacts">
+                            <ul>
+                                <li 
+                                    v-for="(contact,index) in contacts" 
+                                    v-if = "contact.name.toLowerCase().includes(newChat)"
+                                    @click="selectChat(index)" 
+                                    class="contact"
+                                >
+                                    <img :src="`img/avatar${contact.avatar}.jpg`"  alt="">
+                                    <h2 class="name">
+                                        {{contact.name}}
+                                    </h2>
+                                    <p :class="newMex">
+                                        
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="right">
+                    <div class="header-right">
+                        <div class="side-left">
+                            <img height="70" width="70" :src="'./img/avatar' + contacts[numberContact].avatar + '.jpg'" alt="">
+                            <div class="side-left-text" >
+                                <h2>{{contacts[numberContact].name}}</h2>
+                                <p>Ultimo accesso oggi alle...</p>
+                            </div>
+                        </div>
+                        <div class="side-right">
+                            <i class="fas fa-search fa-2x"></i>
+                            <i class="fas fa-paperclip fa-2x"></i>
+                            <i class="fas fa-ellipsis-v fa-2x"></i>
+                        </div>
+                    </div>
+                    <div class="main-right">
+                        <div class="chat-live">
+                            <div v-for="(text,index) in contacts[numberContact].messages">
+                                <div :class="text.status">
+                                    <div class="text">
+                                        {{text.text}}
+                                        <div class="dropdown">
+                                            <i class="fas fa-angle-down" @click="openDropDown()"  class="dropbtn">
+                                            <div id="myDropdown" class="dropdown-content" :class="{show: isActive}" >
+                                                <a href="#info">Message info</a>
+                                                <a href="#delete" @click = 'deleteMessage(index)'>Delete message</a>
+                                            </div>
+                                            </i>
+                                        </div>
+                                        <div class="data">
+                                            {{text.date}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="message">
+                            <i class="far fa-smile fa-2x"></i>
+                            <input type="text" class="form-control" placeholder="Scrivi un messaggio" aria-label="Username" aria-describedby="basic-addon1" v-model="newMex" @keyup.enter="add">
+                            <i class="fas fa-microphone fa-2x"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+</body>
+</html>
