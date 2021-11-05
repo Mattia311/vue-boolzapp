@@ -51,7 +51,7 @@
                         <div class="contacts">
                             <ul>
                                 <li 
-                                    v-for="(contact,index) in contacts"
+                                    v-for="(contact,index) in contacts" 
                                     v-if = "contact.name.toLowerCase().includes(newChat)"
                                     @click="selectChat(index)" 
                                     class="contact"
@@ -71,7 +71,7 @@
                             <img height="70" width="70" :src="'./img/avatar' + contacts[numberContact].avatar + '.jpg'" alt="">
                             <div class="side-left-text" >
                                 <h2>{{contacts[numberContact].name}}</h2>
-                                <p>Ultimo accesso oggi alle... </p>
+                                <p>Ultimo accesso oggi alle...</p>
                             </div>
                         </div>
                         <div class="side-right">
@@ -87,11 +87,12 @@
                                     <div class="text">
                                         {{text.text}}
                                         <div class="dropdown">
-                                            <i class="fas fa-angle-down" @click="openDropdown()"  class="dropbtn"></i>
-                                            <div id="myDropdown" class="dropdown-content">
+                                            <i class="fas fa-angle-down" @click="openDropDown()"  class="dropbtn">
+                                            <div id="myDropdown" class="dropdown-content" :class="{show: isActive}" >
                                                 <a href="#info">Message info</a>
-                                                <a href="#delete">Delete message</a>
+                                                <a href="#delete" @click = 'deleteMessage'>Delete message</a>
                                             </div>
+                                            </i>
                                         </div>
                                         <div class="data">
                                             {{text.date}}
@@ -111,6 +112,7 @@
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </body>
 </html>

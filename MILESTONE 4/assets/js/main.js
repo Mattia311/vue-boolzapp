@@ -106,7 +106,8 @@ const app = new Vue ({
         numberContact : 0,
         numberMessage : 0,
         newMex: "",
-        newChat: ""
+        newChat: [],
+        isActive: false
     },
     methods: {
         selectChat (index) {
@@ -119,26 +120,37 @@ const app = new Vue ({
             if(this.newMex != ''){
                 this.contacts[this.numberContact].messages.push({
                     text: this.newMex,
+                    date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                     status: 'sent'
                 })
                 this.newMex = '',
                 setTimeout (() => {
                     this.contacts[this.numberContact].messages.push({
                         text: 'ok',
+                        date: dayjs().format('DD/MM/YYYY HH:mm:ss'),
                         status: 'received',
                     });
                 } ,1000);
             }
             
         },
-        openDropdown(index) {
-            //al click richiamare la classe show affinchè si veda il menu a tendina uno alla volta
-           
+        openDropDown() {
+            this.isActive = !this.isActive;
             console.log('cliccato');
+
+        },
+        deleteMessage (i,text){
+            this.contacts[this.numberContact].messages.splice(i,1)
+            this.newChat.push(text)
+
+        }
+            
+           
+           
            
             
         
-        }
+    
         
 	}
     
