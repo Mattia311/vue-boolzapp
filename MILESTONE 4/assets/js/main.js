@@ -131,7 +131,9 @@ const app = new Vue ({
             
         },
         openDropdown() {
-           this.classList('.show')
+           console.log('cliccato');
         }
+        
 	}
+    
 })
