@@ -130,15 +130,8 @@ const app = new Vue ({
             }
             
         },
-        findChat () {
-            
-
+        openDropdown() {
+           this.classList('.show')
         }
 	}
 })
-
-
-function myFunction() {
-    document.getElementById("myDropdown").classList.toggle("show");
-    console.log();
-}
