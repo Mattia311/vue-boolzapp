@@ -104,6 +104,7 @@ const app = new Vue ({
             },
         ],
         numberContact : 0,
+        numberMessage : 0,
         newMex: "",
         newChat: ""
     },
@@ -130,8 +131,13 @@ const app = new Vue ({
             }
             
         },
-        openDropdown() {
-           console.log('cliccato');
+        openDropdown(index) {
+            //al click richiamare la classe show affinchè si veda il menu a tendina uno alla volta
+           
+            console.log('cliccato');
+           
+            
+        
         }
         
 	}
